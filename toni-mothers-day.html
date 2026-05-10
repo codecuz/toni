@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Toni &amp; Jibari — The Beginning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:  #090807;
+  --cream:  #f4efe6;
+  --gold:   #c6a24a;
+  --goldl:  #e4d09a;
+  --goldd:  rgba(198,162,74,0.16);
+  --gray:   #897f75;
+  --brown:  #171210;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.3;}
+
+/* PARTICLES */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.pt{position:absolute;width:1.5px;height:1.5px;background:var(--gold);border-radius:50%;opacity:0;animation:ptrise var(--d,9s) var(--dl,0s) infinite ease-in;}
+@keyframes ptrise{0%{opacity:0;transform:translateY(101vh) scale(0);}8%{opacity:0.45;}92%{opacity:0.07;}100%{opacity:0;transform:translateY(-4vh) scale(1.5);}}
+
+/* MUSIC BTN */
+#musicBtn{position:fixed;top:18px;right:18px;z-index:200;background:transparent;border:1px solid rgba(198,162,74,0.35);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:8px;font-weight:300;letter-spacing:2.5px;text-transform:uppercase;padding:8px 13px;cursor:pointer;transition:all 0.35s ease;}
+#musicBtn:hover{background:var(--goldd);border-color:var(--gold);}
+
+/* BRAND */
+.brand{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:40px;position:relative;z-index:2;}
+
+/* PAGES */
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:72px 28px 88px;text-align:center;position:relative;opacity:0;transform:translateY(18px);transition:opacity 0.85s ease,transform 0.85s ease;z-index:2;}
+.page.active{opacity:1;transform:translateY(0);}
+.page.hidden{display:none;}
+
+/* LINES */
+.vl{width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:0 auto;}
+.hl{width:68px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto;}
+
+/* FADE ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.f1{opacity:0;animation:fadeUp 1s ease 0.25s forwards;}
+.f2{opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.f3{opacity:0;animation:fadeUp 1s ease 0.75s forwards;}
+.f4{opacity:0;animation:fadeUp 1s ease 1.0s forwards;}
+.f5{opacity:0;animation:fadeUp 1s ease 1.25s forwards;}
+.f6{opacity:0;animation:fadeUp 1s ease 1.5s forwards;}
+
+/* HOME */
+#home{background:radial-gradient(ellipse at 50% 32%,#1a120a 0%,var(--black) 68%);}
+.home-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,4vw,20px);font-weight:300;font-style:italic;color:var(--goldl);line-height:1.85;max-width:330px;margin:0 auto 32px;}
+.home-display{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,10vw,66px);font-weight:300;line-height:1.15;color:var(--cream);letter-spacing:0.01em;margin-bottom:10px;}
+.home-display em{font-style:italic;color:var(--goldl);}
+.home-promise{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gray);max-width:290px;margin:0 auto 44px;line-height:2.2;}
+
+/* BUTTONS */
+.btn{display:inline-block;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:400;letter-spacing:4px;text-transform:uppercase;padding:17px 40px;cursor:pointer;transition:all 0.45s ease;position:relative;overflow:hidden;}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(198,162,74,0.12),rgba(198,162,74,0.04));transform:translateX(-101%);transition:transform 0.45s ease;}
+.btn:hover::before{transform:translateX(0);}
+.btn:hover{color:var(--goldl);box-shadow:0 0 32px rgba(198,162,74,0.1);}
+.btn-next{display:inline-block;background:transparent;border:1px solid rgba(198,162,74,0.38);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:8px;font-weight:300;letter-spacing:4px;text-transform:uppercase;padding:15px 34px;cursor:pointer;transition:all 0.4s ease;margin-top:36px;}
+.btn-next:hover{border-color:var(--gold);background:var(--goldd);}
+
+/* CHAPTER HEADERS */
+.ch-tag{font-size:8px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.ch-title{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:38px;}
+
+/* CLUE */
+.clue-text{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,5.5vw,34px);font-weight:300;font-style:italic;line-height:1.6;color:var(--cream);max-width:350px;margin:0 auto 40px;}
+.clue-input{background:transparent;border:none;border-bottom:1px solid rgba(198,162,74,0.32);color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;letter-spacing:5px;text-align:center;text-transform:uppercase;padding:12px 20px;width:260px;outline:none;transition:border-color 0.35s ease;-webkit-appearance:none;display:block;margin:0 auto 14px;}
+.clue-input::placeholder{color:rgba(198,162,74,0.26);font-size:9px;letter-spacing:3px;}
+.clue-input:focus{border-bottom-color:var(--gold);}
+.err{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(198,162,74,0.5);height:18px;opacity:0;transition:opacity 0.3s;margin-bottom:18px;}
+.err.show{opacity:1;}
+
+/* REVEAL */
+.reveal{display:none;width:100%;max-width:400px;margin:0 auto;animation:fadeUp 0.9s ease forwards;}
+.reveal.show{display:block;}
+.rev-tag{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.rev-head{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,50px);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:6px;}
+.rev-head em{font-style:italic;color:var(--goldl);}
+.rev-body{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,3.8vw,18px);font-weight:300;font-style:italic;color:var(--goldl);line-height:1.95;max-width:330px;margin:0 auto;}
+
+/* CARD */
+.card{background:linear-gradient(145deg,#141008,#0d0b08);border:1px solid rgba(198,162,74,0.2);padding:32px 20px;position:relative;margin:24px 0;}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.drow{display:flex;align-items:flex-start;gap:13px;padding:13px 0;text-align:left;border-bottom:1px solid rgba(198,162,74,0.08);}
+.drow:last-child{border-bottom:none;}
+.dico{font-size:14px;min-width:20px;text-align:center;margin-top:2px;opacity:0.7;}
+.dlbl{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.dval{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--cream);line-height:1.35;}
+
+/* LOUNGE PULSE */
+.pulse-wrap{position:relative;width:88px;height:88px;margin:26px auto;}
+.pulse-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid rgba(198,162,74,0.42);border-radius:50%;opacity:0;animation:ringOut 2.8s ease-out infinite;}
+.pulse-ring:nth-child(1){animation-delay:0s;}
+.pulse-ring:nth-child(2){animation-delay:0.9s;}
+.pulse-ring:nth-child(3){animation-delay:1.8s;}
+@keyframes ringOut{0%{width:12px;height:12px;opacity:0.9;}100%{width:88px;height:88px;opacity:0;}}
+.pulse-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;}
+
+/* BLOOM */
+.bloom-wrap{position:relative;width:90px;height:90px;margin:26px auto;}
+.bpetal{position:absolute;top:50%;left:50%;width:18px;height:30px;background:linear-gradient(to top,rgba(198,162,74,0.6),rgba(198,162,74,0.08));border-radius:50%;transform-origin:bottom center;animation:bpop 3s ease-in-out infinite alternate;}
+@keyframes bpop{0%{transform:rotate(var(--r)) translateY(-10px) scaleY(0.7);opacity:0.35;}100%{transform:rotate(var(--r)) translateY(-14px) scaleY(1);opacity:0.9;}}
+.bloom-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;}
+
+/* PASSPORT */
+.passport{background:linear-gradient(145deg,#1a1208,#0f0d0a);border:1px solid rgba(198,162,74,0.28);padding:40px 22px 44px;position:relative;overflow:hidden;max-width:380px;width:100%;margin:0 auto 22px;}
+.passport::before{content:'RIDDIM & ROMANCE';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-size:56px;font-weight:900;color:rgba(198,162,74,0.025);white-space:nowrap;pointer-events:none;font-family:'Montserrat',sans-serif;letter-spacing:-1px;}
+.pstamp{position:absolute;top:18px;right:18px;width:64px;height:64px;border:2px solid rgba(198,162,74,0.38);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(14deg);opacity:0.85;}
+.pstamp .pflag{font-size:16px;}
+.pstamp .plbl{font-size:6px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:500;}
+
+/* FINAL PAGE */
+#final{background:radial-gradient(ellipse at 50% 22%,#13080a 0%,var(--black) 64%);padding-bottom:100px;}
+.date-box{border:1px solid rgba(198,162,74,0.32);padding:50px 28px;max-width:310px;width:100%;margin:30px auto;background:linear-gradient(145deg,#141009,#0c0907);position:relative;}
+.date-box::before,.date-box::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;opacity:0.42;}
+.date-box::before{top:-1px;left:-1px;border-width:1px 0 0 1px;}
+.date-box::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0;}
+.date-time{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,14vw,78px);font-weight:300;color:var(--gold);letter-spacing:3px;line-height:1;}
+.date-sub{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-top:10px;}
+.date-hint{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--goldl);margin-top:20px;line-height:1.75;}
+
+/* CLOSING */
+.closing{max-width:350px;margin:0 auto;padding:46px 0 30px;text-align:center;}
+.chead{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,7vw,42px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:20px;}
+.cbody{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,3.5vw,17px);font-weight:300;font-style:italic;color:var(--goldl);line-height:2;margin-bottom:30px;}
+.sig{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);}
+.signame{font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;color:var(--cream);letter-spacing:2px;margin-top:6px;}
+.raplogo{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--gold);letter-spacing:2px;margin-top:8px;}
+
+/* GALLERY */
+.gallery{width:100%;max-width:400px;margin:34px auto 0;}
+.glbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;}
+.ggrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.gitem{aspect-ratio:3/4;background:var(--brown);border:1px solid rgba(198,162,74,0.1);display:flex;align-items:center;justify-content:center;}
+.gitem:first-child{grid-column:1/-1;aspect-ratio:16/9;}
+.gph{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(198,162,74,0.24);text-align:center;padding:10px;line-height:1.8;}
+
+/* PROGRESS DOTS */
+#dots{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:100;opacity:0;transition:opacity 0.5s;}
+#dots.on{opacity:1;}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(198,162,74,0.22);transition:background 0.4s,transform 0.4s;}
+.dot.on{background:var(--gold);transform:scale(1.45);}
+
+/* OVERLAYS */
+#overlay{position:fixed;inset:0;background:var(--black);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.55s ease;}
+#overlay.on{opacity:1;pointer-events:all;}
+#flash{position:fixed;inset:0;background:radial-gradient(ellipse at center,rgba(198,162,74,0.13),transparent 65%);z-index:498;opacity:0;pointer-events:none;}
+#flash.on{animation:flashPop 1.6s ease forwards;}
+@keyframes flashPop{0%{opacity:0;}25%{opacity:1;}100%{opacity:0;}}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div id="overlay"></div>
+<div id="flash"></div>
+
+<!-- EDIT: Replace src with your preferred ambient audio URL -->
+<audio id="bgAudio" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">♪ Music Off</button>
+
+<!-- PROGRESS DOTS -->
+<div id="dots">
+  <div class="dot" id="d0"></div>
+  <div class="dot" id="d1"></div>
+  <div class="dot" id="d2"></div>
+  <div class="dot" id="d3"></div>
+  <div class="dot" id="d4"></div>
+  <div class="dot" id="d5"></div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     HOME
+════════════════════════════════════ -->
+<div class="page active" id="home">
+  <div class="brand f1">Toni &amp; Jibari — The Beginning</div>
+  <div class="vl f2" style="margin-bottom:34px;"></div>
+
+  <!-- EDIT: Opening personal message to Toni -->
+  <p class="home-intro f3">
+    You have been special to me<br>in more ways than one.
+  </p>
+
+  <h1 class="home-display f4">
+    Today is<br>about <em>you.</em>
+  </h1>
+
+  <div class="hl f4" style="margin:26px auto;"></div>
+
+  <!-- EDIT: The ongoing tradition message -->
+  <p class="home-promise f5">
+    Throughout the year,<br>
+    you will receive clues<br>
+    at different moments in time.<br><br>
+    Mother's Day is the start<br>
+    of our new life together.
+  </p>
+
+  <button class="btn f6" onclick="goTo('ch1')">Begin Your Journey</button>
+
+  <!-- EDIT: Today's date -->
+  <div class="f6" style="font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-top:44px;">
+    Sunday, May 11, 2025
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     CHAPTER 1 — THE PARK (LOUNGE)
+════════════════════════════════════ -->
+<div class="page hidden" id="ch1">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter One</div>
+  <div class="ch-title">DC Is Our Beginning</div>
+  <div class="vl" style="margin-bottom:34px;"></div>
+
+  <!-- QUESTION -->
+  <div id="ch1-q">
+    <!-- EDIT: Clue 1 — answer is "Park" (the lounge in DC) -->
+    <p class="clue-text">
+      Where the city gets quiet,<br>
+      the trees do the talking,<br>
+      and we get a moment<br>
+      to just <em style="font-style:italic;color:var(--goldl);">be.</em>
+    </p>
+    <div class="hl" style="margin-bottom:30px;"></div>
+    <input class="clue-input" id="i1" type="text" placeholder="Your answer…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(1)">
+    <div class="err" id="e1">Not quite, love. Feel it again.</div>
+    <button class="btn" onclick="check(1)">Unlock</button>
+  </div>
+
+  <!-- REVEAL -->
+  <div class="reveal" id="ch1-r">
+    <div class="rev-tag">Chapter One · Unlocked</div>
+    <div class="pulse-wrap">
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-center">🌳</div>
+    </div>
+    <h2 class="rev-head">The <em>Park</em></h2>
+    <div class="hl" style="margin:20px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">📍</div>
+        <div>
+          <div class="dlbl">Where we're going</div>
+          <!-- EDIT: Lounge name and location -->
+          <div class="dval">Park Lounge · Washington, DC</div>
+        </div>
+      </div>
+      <div class="drow">
+        <div class="dico">✦</div>
+        <div>
+          <div class="dlbl">The meaning</div>
+          <!-- EDIT: Personal note about this spot -->
+          <div class="dval">A place I've moved through alone — now I want to walk through it with you.</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT: Romantic note Chapter 1 -->
+    <p class="rev-body">
+      "DC is where we started.<br>Every corner holds a piece of what we are."
+    </p>
+    <button class="btn-next" onclick="goTo('ch2')">Continue to Chapter Two →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     CHAPTER 2 — BLOOM IN BALTIMORE
+════════════════════════════════════ -->
+<div class="page hidden" id="ch2">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Two</div>
+  <div class="ch-title">Something Beautiful Is Growing</div>
+  <div class="vl" style="margin-bottom:34px;"></div>
+
+  <!-- QUESTION -->
+  <div id="ch2-q">
+    <!-- EDIT: Clue 2 — answer is "Bloom in Baltimore" -->
+    <p class="clue-text">
+      Where petals open<br>
+      and beauty finds its name —<br>
+      a city in full color,<br>
+      a moment in full <em style="font-style:italic;color:var(--goldl);">bloom.</em>
+    </p>
+    <div class="hl" style="margin-bottom:30px;"></div>
+    <input class="clue-input" id="i2" type="text" placeholder="Name it…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(2)">
+    <div class="err" id="e2">Think flowers. Think color. Think city.</div>
+    <button class="btn" onclick="check(2)">Unlock</button>
+  </div>
+
+  <!-- REVEAL -->
+  <div class="reveal" id="ch2-r">
+    <div class="rev-tag">Chapter Two · Unlocked</div>
+    <div class="bloom-wrap">
+      <div class="bpetal" style="--r:0deg;  margin-top:-28px;margin-left:-9px;"></div>
+      <div class="bpetal" style="--r:72deg; margin-top:-10px;margin-left:14px;"></div>
+      <div class="bpetal" style="--r:144deg;margin-top:14px; margin-left:5px; "></div>
+      <div class="bpetal" style="--r:216deg;margin-top:14px; margin-left:-23px;"></div>
+      <div class="bpetal" style="--r:288deg;margin-top:-10px;margin-left:-32px;"></div>
+      <div class="bloom-core">🌸</div>
+    </div>
+    <h2 class="rev-head"><em>Bloom</em><br>in Baltimore</h2>
+    <div class="hl" style="margin:20px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">🌸</div>
+        <div>
+          <div class="dlbl">Experience</div>
+          <!-- EDIT: Bloom event/location details -->
+          <div class="dval">Bloom · Baltimore, MD</div>
+        </div>
+      </div>
+      <div class="drow">
+        <div class="dico">✦</div>
+        <div>
+          <div class="dlbl">What it means</div>
+          <!-- EDIT: Personal note about Bloom -->
+          <div class="dval">Like you — something rare that only grows more beautiful with time.</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT: Romantic note Chapter 2 -->
+    <p class="rev-body">
+      "You are in full bloom, Toni.<br>And I see every single petal."
+    </p>
+    <button class="btn-next" onclick="goTo('ch3')">Continue to Chapter Three →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     CHAPTER 3 — FASHION
+════════════════════════════════════ -->
+<div class="page hidden" id="ch3">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Three</div>
+  <div class="ch-title">What We Create Together</div>
+  <div class="vl" style="margin-bottom:34px;"></div>
+
+  <!-- QUESTION -->
+  <div id="ch3-q">
+    <!-- EDIT: Clue 3 — answer is "Fashion" -->
+    <p class="clue-text">
+      The place where we slow down,<br>
+      breathe, and enjoy what<br>
+      we've created together.<br><br>
+      We bring the passion,<br>
+      I bring the design —<br>
+      and you bring the <em style="font-style:italic;color:var(--goldl);">___________</em>
+    </p>
+    <div class="hl" style="margin-bottom:30px;"></div>
+    <input class="clue-input" id="i3" type="text" placeholder="You bring the…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(3)">
+    <div class="err" id="e3">You already know this one, love.</div>
+    <button class="btn" onclick="check(3)">Unlock</button>
+  </div>
+
+  <!-- REVEAL -->
+  <div class="reveal" id="ch3-r">
+    <div class="rev-tag">Chapter Three · Unlocked</div>
+    <div style="font-size:38px;margin:26px 0;">👗</div>
+    <h2 class="rev-head">She brings<br>the <em>Fashion.</em></h2>
+    <div class="hl" style="margin:20px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">✦</div>
+        <div>
+          <div class="dlbl">The formula</div>
+          <div class="dval">Passion + Design + <span style="color:var(--goldl);">Fashion</span> = Us</div>
+        </div>
+      </div>
+      <div class="drow">
+        <div class="dico">💫</div>
+        <div>
+          <div class="dlbl">What you bring</div>
+          <!-- EDIT: Personal note about her style -->
+          <div class="dval">The elegance. The eye. The energy that makes everything look right.</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT: Romantic note Chapter 3 -->
+    <p class="rev-body">
+      "Everything I build looks better<br>because you're standing next to it."
+    </p>
+    <button class="btn-next" onclick="goTo('ch4')">Continue to Chapter Four →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     CHAPTER 4 — MILAN
+════════════════════════════════════ -->
+<div class="page hidden" id="ch4">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Four</div>
+  <div class="ch-title">Where Fashion Controls the World</div>
+  <div class="vl" style="margin-bottom:34px;"></div>
+
+  <!-- QUESTION -->
+  <div id="ch4-q">
+    <!-- EDIT: Clue 4 — answer is "Milan" -->
+    <p class="clue-text">
+      One of the four capitals<br>
+      where fashion controls<br>
+      the day <em style="font-style:italic;color:var(--goldl);">and</em> the night.
+    </p>
+    <div class="hl" style="margin-bottom:30px;"></div>
+    <input class="clue-input" id="i4" type="text" placeholder="Name the city…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(4)">
+    <div class="err" id="e4">Think runways. Think Italy.</div>
+    <button class="btn" onclick="check(4)">Unlock</button>
+  </div>
+
+  <!-- REVEAL -->
+  <div class="reveal" id="ch4-r">
+    <div class="rev-tag">Chapter Four · Unlocked</div>
+    <div class="passport">
+      <div class="pstamp">
+        <span class="pflag">🇮🇹</span>
+        <span class="plbl">Italia</span>
+      </div>
+      <div style="font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">
+        Riddim &amp; Romance · Travel
+      </div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(42px,11vw,64px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.1;margin-bottom:6px;">
+        Milan
+      </h2>
+      <div style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">
+        Fashion Capital · Italy
+      </div>
+      <div class="drow">
+        <div class="dico">✈️</div>
+        <div>
+          <div class="dlbl">Destination</div>
+          <div class="dval">Milan, Italy</div>
+        </div>
+      </div>
+      <div class="drow">
+        <div class="dico">🗓</div>
+        <div>
+          <div class="dlbl">Our trip</div>
+          <!-- EDIT: Trip date detail — full date reveals tonight at 8:03 -->
+          <div class="dval">Details drop tonight at exactly the right time.</div>
+        </div>
+      </div>
+      <div class="drow">
+        <div class="dico">👗</div>
+        <div>
+          <div class="dlbl">Why Milan</div>
+          <!-- EDIT: Why you chose Milan -->
+          <div class="dval">Because you deserve to walk the streets that defined fashion — and own every one of them.</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT: Romantic note Chapter 4 -->
+    <p class="rev-body" style="margin-top:24px;">
+      "Pack light. Bring love.<br>Leave room for everything Milan will give us."
+    </p>
+    <button class="btn-next" onclick="goTo('final')">The Final Reveal →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     FINAL — THE DATE REVEAL
+════════════════════════════════════ -->
+<div class="page hidden" id="final">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">The Finale</div>
+  <div class="ch-title">Your Next Chapter Awaits</div>
+  <div class="vl" style="margin-bottom:34px;"></div>
+
+  <!-- EDIT: Final page headline -->
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,50px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.2;margin-bottom:8px;">
+    Tonight,<br><span style="color:var(--goldl);">I tell you everything.</span>
+  </h2>
+
+  <div class="hl" style="margin:26px auto;"></div>
+
+  <!-- DATE REVEAL BOX -->
+  <!-- EDIT: Trip date is August 3 (8/3), so reveal time is 8:03 PM -->
+  <div class="date-box">
+    <div style="font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;">
+      Your next clue drops at
+    </div>
+    <!-- EDIT: Change this time to match your trip date format (8-3 = 8:03) -->
+    <div class="date-time">8:03</div>
+    <div class="date-sub">Tonight · PM</div>
+    <!-- EDIT: Message before the reveal -->
+    <p class="date-hint">
+      "Check back tonight.<br>
+      Your next chapter will be revealed<br>
+      at exactly the right moment."
+    </p>
+  </div>
+
+  <!-- PHOTO GALLERY -->
+  <div class="gallery">
+    <div class="glbl">Our Story · Add Your Photos Here</div>
+    <div class="ggrid">
+      <!-- EDIT: Replace each .gitem with <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+      <div class="gitem"><span class="gph">Our first<br>moment together</span></div>
+      <div class="gitem"><span class="gph">A memory<br>I keep close</span></div>
+      <div class="gitem"><span class="gph">The day<br>that changed us</span></div>
+    </div>
+  </div>
+
+  <!-- CLOSING MESSAGE -->
+  <div class="closing">
+    <div class="vl" style="margin:0 auto 38px;"></div>
+
+    <!-- EDIT: Closing headline -->
+    <h3 class="chead">
+      Everything I build<br>is for this family.
+    </h3>
+
+    <!-- EDIT: Your personal closing letter to Toni -->
+    <p class="cbody">
+      You became a mother and never stopped being you —<br>
+      graceful, strong, and fully yourself.<br><br>
+      I've had my head down building our future.<br>
+      Today I looked up — and I just needed you to know<br>
+      how seen, how loved, and how celebrated you are.<br><br>
+      This is only the beginning, Toni.<br>
+      And I wouldn't want to begin it<br>with anyone but you.
+    </p>
+
+    <div class="hl"></div>
+    <div class="sig" style="margin-top:26px;">With all my love,</div>
+    <!-- EDIT: Your name -->
+    <div class="signame">Jibari</div>
+    <div style="margin-top:30px;" class="hl"></div>
+    <div class="raplogo">Riddim &amp; Romance · 2025</div>
+  </div>
+</div>
+
+
+<script>
+/* PARTICLES */
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='pt';
+    p.style.cssText=`left:${Math.random()*100}%;--d:${7+Math.random()*6}s;--dl:${Math.random()*9}s;`;
+    c.appendChild(p);
+  }
+})();
+
+/* MUSIC */
+let musicOn=false;
+const audio=document.getElementById('bgAudio');
+audio.volume=0.18;
+function toggleMusic(){
+  const btn=document.getElementById('musicBtn');
+  if(musicOn){audio.pause();btn.textContent='♪ Music Off';musicOn=false;}
+  else{audio.play().catch(()=>{});btn.textContent='♫ Music On';musicOn=true;}
+}
+
+/* NAVIGATION */
+const PAGES=['home','ch1','ch2','ch3','ch4','final'];
+function goTo(id){
+  const ov=document.getElementById('overlay');
+  ov.classList.add('on');
+  setTimeout(()=>{
+    document.querySelectorAll('.page').forEach(p=>{p.classList.add('hidden');p.classList.remove('active');});
+    const t=document.getElementById(id);
+    if(t){t.classList.remove('hidden');window.scrollTo(0,0);}
+    setTimeout(()=>{t&&t.classList.add('active');ov.classList.remove('on');},80);
+    updateDots(id);
+  },560);
+}
+function updateDots(id){
+  const idx=PAGES.indexOf(id);
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
+  document.getElementById('dots').classList.toggle('on',id!=='home');
+}
+
+/* ANSWERS — EDIT accepted answers per clue */
+const ANS={
+  1:['park'],
+  2:['bloom','bloom in baltimore','baltimore'],
+  3:['fashion'],
+  4:['milan','milano','italy','italia'],
+};
+
+function check(n){
+  const inp=document.getElementById(`i${n}`);
+  const err=document.getElementById(`e${n}`);
+  const val=inp.value.trim().toLowerCase();
+  const ok=ANS[n].some(a=>val===a||val.includes(a)||(a.includes(val)&&val.length>2));
+  if(ok){err.classList.remove('show');unlock(n);}
+  else{
+    err.classList.add('show');
+    inp.style.borderBottomColor='rgba(198,162,74,0.45)';
+    setTimeout(()=>{inp.style.borderBottomColor='';err.classList.remove('show');},2600);
+  }
+}
+
+function unlock(n){
+  const fl=document.getElementById('flash');
+  fl.classList.remove('on');void fl.offsetWidth;fl.classList.add('on');
+  setTimeout(()=>{
+    const q=document.getElementById(`ch${n}-q`);
+    const r=document.getElementById(`ch${n}-r`);
+    if(q)q.style.display='none';
+    if(r)r.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },900);
+}
+
+/* INIT */
+window.addEventListener('load',()=>{
+  document.getElementById('home').classList.add('active');
+  updateDots('home');
+});
+</script>
+</body>
+</html>
