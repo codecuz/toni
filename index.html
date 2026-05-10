@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Toni &amp; Jibari — The Beginning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:  #090807;
+  --cream:  #f8f3ea;
+  --gold:   #d4ae58;
+  --goldl:  #ecdfa8;
+  --goldd:  rgba(212,174,88,0.18);
+  --gray:   #b0a496;
+  --brown:  #1c1510;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.3;}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.pt{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;opacity:0;animation:ptrise var(--d,9s) var(--dl,0s) infinite ease-in;}
+@keyframes ptrise{0%{opacity:0;transform:translateY(101vh) scale(0);}8%{opacity:0.45;}92%{opacity:0.07;}100%{opacity:0;transform:translateY(-4vh) scale(1.5);}}
+#musicBtn{position:fixed;top:18px;right:18px;z-index:200;background:transparent;border:1px solid rgba(212,174,88,0.4);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:300;letter-spacing:2.5px;text-transform:uppercase;padding:9px 15px;cursor:pointer;transition:all 0.35s ease;}
+#musicBtn:hover{background:var(--goldd);border-color:var(--gold);}
+.brand{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:40px;position:relative;z-index:2;}
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 32px 96px;text-align:center;position:relative;opacity:0;transform:translateY(18px);transition:opacity 0.85s ease,transform 0.85s ease;z-index:2;}
+.page.active{opacity:1;transform:translateY(0);}
+.page.hidden{display:none;}
+.vl{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:0 auto;}
+.hl{width:72px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.f1{opacity:0;animation:fadeUp 1s ease 0.25s forwards;}
+.f2{opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.f3{opacity:0;animation:fadeUp 1s ease 0.75s forwards;}
+.f4{opacity:0;animation:fadeUp 1s ease 1.0s forwards;}
+.f5{opacity:0;animation:fadeUp 1s ease 1.25s forwards;}
+.f6{opacity:0;animation:fadeUp 1s ease 1.5s forwards;}
+#home{background:radial-gradient(ellipse at 50% 32%,#1a120a 0%,var(--black) 68%);}
+.home-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,4.5vw,25px);font-weight:300;font-style:italic;color:var(--goldl);line-height:1.85;max-width:340px;margin:0 auto 32px;}
+.home-display{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,11vw,72px);font-weight:300;line-height:1.12;color:var(--cream);margin-bottom:10px;}
+.home-display em{font-style:italic;color:var(--goldl);}
+.home-promise{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);max-width:300px;margin:0 auto 48px;line-height:2.4;}
+.btn{display:inline-block;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:400;letter-spacing:4px;text-transform:uppercase;padding:18px 44px;cursor:pointer;transition:all 0.45s ease;position:relative;overflow:hidden;}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(212,174,88,0.14),rgba(212,174,88,0.04));transform:translateX(-101%);transition:transform 0.45s ease;}
+.btn:hover::before{transform:translateX(0);}
+.btn:hover{color:var(--goldl);box-shadow:0 0 32px rgba(212,174,88,0.12);}
+.btn-next{display:inline-block;background:transparent;border:1px solid rgba(212,174,88,0.42);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:300;letter-spacing:4px;text-transform:uppercase;padding:16px 36px;cursor:pointer;transition:all 0.4s ease;margin-top:36px;}
+.btn-next:hover{border-color:var(--gold);background:var(--goldd);}
+.ch-tag{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.ch-title{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:38px;}
+.clue-text{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,6vw,38px);font-weight:300;font-style:italic;line-height:1.7;color:var(--cream);max-width:360px;margin:0 auto 44px;}
+.clue-input{background:transparent;border:none;border-bottom:1px solid rgba(212,174,88,0.38);color:var(--cream);font-family:'Montserrat',sans-serif;font-size:15px;font-weight:300;letter-spacing:5px;text-align:center;text-transform:uppercase;padding:14px 20px;width:270px;outline:none;transition:border-color 0.35s ease;-webkit-appearance:none;display:block;margin:0 auto 16px;}
+.clue-input::placeholder{color:rgba(212,174,88,0.3);font-size:11px;letter-spacing:3px;}
+.clue-input:focus{border-bottom-color:var(--gold);}
+.err{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(212,174,88,0.55);height:22px;opacity:0;transition:opacity 0.3s;margin-bottom:20px;}
+.err.show{opacity:1;}
+.reveal{display:none;width:100%;max-width:420px;margin:0 auto;animation:fadeUp 0.9s ease forwards;}
+.reveal.show{display:block;}
+.rev-tag{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.rev-head{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,9vw,54px);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:6px;}
+.rev-head em{font-style:italic;color:var(--goldl);}
+.rev-body{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,4vw,21px);font-weight:300;font-style:italic;color:var(--goldl);line-height:1.95;max-width:340px;margin:0 auto;}
+.card{background:linear-gradient(145deg,#181208,#0e0c09);border:1px solid rgba(212,174,88,0.22);padding:34px 22px;position:relative;margin:26px 0;}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.drow{display:flex;align-items:flex-start;gap:14px;padding:15px 0;text-align:left;border-bottom:1px solid rgba(212,174,88,0.09);}
+.drow:last-child{border-bottom:none;}
+.dico{font-size:16px;min-width:22px;text-align:center;margin-top:2px;opacity:0.75;}
+.dlbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:5px;}
+.dval{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--cream);line-height:1.4;}
+.pulse-wrap{position:relative;width:90px;height:90px;margin:28px auto;}
+.pulse-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid rgba(212,174,88,0.45);border-radius:50%;opacity:0;animation:ringOut 2.8s ease-out infinite;}
+.pulse-ring:nth-child(1){animation-delay:0s;}.pulse-ring:nth-child(2){animation-delay:0.9s;}.pulse-ring:nth-child(3){animation-delay:1.8s;}
+@keyframes ringOut{0%{width:12px;height:12px;opacity:0.9;}100%{width:90px;height:90px;opacity:0;}}
+.pulse-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:26px;}
+.bloom-wrap{position:relative;width:90px;height:90px;margin:28px auto;}
+.bpetal{position:absolute;top:50%;left:50%;width:18px;height:30px;background:linear-gradient(to top,rgba(212,174,88,0.65),rgba(212,174,88,0.08));border-radius:50%;transform-origin:bottom center;animation:bpop 3s ease-in-out infinite alternate;}
+@keyframes bpop{0%{transform:rotate(var(--r)) translateY(-10px) scaleY(0.7);opacity:0.35;}100%{transform:rotate(var(--r)) translateY(-15px) scaleY(1);opacity:0.9;}}
+.bloom-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;}
+.passport{background:linear-gradient(145deg,#1a1208,#0f0d0a);border:1px solid rgba(212,174,88,0.3);padding:42px 24px 46px;position:relative;overflow:hidden;max-width:380px;width:100%;margin:0 auto 24px;}
+.passport::before{content:'RIDDIM & ROMANCE';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-size:56px;font-weight:900;color:rgba(212,174,88,0.025);white-space:nowrap;pointer-events:none;font-family:'Montserrat',sans-serif;}
+.pstamp{position:absolute;top:18px;right:18px;width:66px;height:66px;border:2px solid rgba(212,174,88,0.4);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(14deg);opacity:0.85;}
+.pstamp .pflag{font-size:17px;}.pstamp .plbl{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:500;}
+
+/* COUNTDOWN */
+#final{background:radial-gradient(ellipse at 50% 22%,#13080a 0%,var(--black) 64%);padding-bottom:100px;}
+.countdown-box{border:1px solid rgba(212,174,88,0.35);padding:52px 32px;max-width:340px;width:100%;margin:32px auto;background:linear-gradient(145deg,#161009,#0d0a07);position:relative;}
+.countdown-box::before,.countdown-box::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;opacity:0.45;}
+.countdown-box::before{top:-1px;left:-1px;border-width:1px 0 0 1px;}
+.countdown-box::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0;}
+.cd-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:30px;}
+.cd-grid{display:flex;align-items:flex-start;justify-content:center;gap:6px;}
+.cd-unit{text-align:center;min-width:70px;}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,15vw,82px);font-weight:300;color:var(--gold);line-height:1;display:block;}
+.cd-unit-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:8px;}
+.cd-colon{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,11vw,62px);color:rgba(212,174,88,0.4);padding-top:4px;line-height:1;animation:colonBlink 1s step-end infinite;}
+@keyframes colonBlink{0%,100%{opacity:1;}50%{opacity:0.15;}}
+.cd-hint{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--goldl);margin-top:28px;line-height:1.85;}
+.cd-done{display:none;font-family:'Cormorant Garamond',serif;font-size:clamp(22px,6vw,34px);font-style:italic;color:var(--goldl);line-height:1.6;padding:20px 0;}
+
+.gallery{width:100%;max-width:420px;margin:36px auto 0;}
+.glbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;}
+.ggrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.gitem{aspect-ratio:3/4;background:var(--brown);border:1px solid rgba(212,174,88,0.12);display:flex;align-items:center;justify-content:center;}
+.gitem:first-child{grid-column:1/-1;aspect-ratio:16/9;}
+.gph{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(212,174,88,0.26);text-align:center;padding:12px;line-height:1.9;}
+.closing{max-width:360px;margin:0 auto;padding:48px 0 32px;text-align:center;}
+.chead{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7.5vw,44px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:22px;}
+.cbody{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,4vw,20px);font-weight:300;font-style:italic;color:var(--goldl);line-height:2.1;margin-bottom:32px;}
+.sig{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);}
+.signame{font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:var(--cream);letter-spacing:2px;margin-top:7px;}
+.raplogo{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--gold);letter-spacing:2px;margin-top:9px;}
+#dots{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:100;opacity:0;transition:opacity 0.5s;}
+#dots.on{opacity:1;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(212,174,88,0.22);transition:background 0.4s,transform 0.4s;}
+.dot.on{background:var(--gold);transform:scale(1.4);}
+#overlay{position:fixed;inset:0;background:var(--black);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.55s ease;}
+#overlay.on{opacity:1;pointer-events:all;}
+#flash{position:fixed;inset:0;background:radial-gradient(ellipse at center,rgba(212,174,88,0.14),transparent 65%);z-index:498;opacity:0;pointer-events:none;}
+#flash.on{animation:flashPop 1.6s ease forwards;}
+@keyframes flashPop{0%{opacity:0;}25%{opacity:1;}100%{opacity:0;}}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div id="overlay"></div>
+<div id="flash"></div>
+<audio id="bgAudio" loop><source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg"></audio>
+<button id="musicBtn" onclick="toggleMusic()">♪ Music Off</button>
+
+<div id="dots">
+  <div class="dot" id="d0"></div>
+  <div class="dot" id="d1"></div>
+  <div class="dot" id="d2"></div>
+  <div class="dot" id="d3"></div>
+  <div class="dot" id="d4"></div>
+  <div class="dot" id="d5"></div>
+</div>
+
+
+<!-- HOME -->
+<div class="page active" id="home">
+  <div class="brand f1">Toni &amp; Jibari — The Beginning</div>
+  <div class="vl f2" style="margin-bottom:36px;"></div>
+  <p class="home-intro f3">You have been special to me<br>in more ways than one.</p>
+  <h1 class="home-display f4">Today is<br>about <em>you.</em></h1>
+  <div class="hl f4" style="margin:28px auto;"></div>
+  <p class="home-promise f5">
+    Throughout the year,<br>you will receive clues<br>at different moments in time.<br><br>
+    Mother's Day is the start<br>of our new life together.
+  </p>
+  <button class="btn f6" onclick="goTo('ch1')">Begin Your Journey</button>
+  <div class="f6" style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-top:48px;">
+    Sunday, May 11, 2025
+  </div>
+</div>
+
+
+<!-- CHAPTER 1 — BRUNCH -->
+<div class="page hidden" id="ch1">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter One</div>
+  <div class="ch-title">DC Is Our Beginning</div>
+  <div class="vl" style="margin-bottom:36px;"></div>
+  <div id="ch1-q">
+    <p class="clue-text">
+      Every time we travel,<br>
+      it's our favorite time of day to eat.<br><br>
+      Nas made a whole song about it<br>
+      on a Sunday.<br><br>
+      And DC? DC practically<br>
+      invented the culture around it.
+    </p>
+    <div class="hl" style="margin-bottom:32px;"></div>
+    <input class="clue-input" id="i1" type="text" placeholder="What are we eating…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(1)">
+    <div class="err" id="e1">Think Sunday mornings, love.</div>
+    <button class="btn" onclick="check(1)">Unlock</button>
+  </div>
+  <div class="reveal" id="ch1-r">
+    <div class="rev-tag">Chapter One · Unlocked</div>
+    <div class="pulse-wrap">
+      <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
+      <div class="pulse-center">🥂</div>
+    </div>
+    <h2 class="rev-head">It's <em>Brunch.</em></h2>
+    <div class="hl" style="margin:22px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">📍</div>
+        <div><div class="dlbl">Where we're going</div>
+        <!-- EDIT: Confirm spelling of venue name -->
+        <div class="dval">Bullion Brunch · Washington, DC</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">🎵</div>
+        <div><div class="dlbl">The Nas connection</div>
+        <div class="dval">Brunch on Sundays — and today we're living it.</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">✦</div>
+        <div><div class="dlbl">The meaning</div>
+        <div class="dval">DC runs on brunch culture. So do we.</div></div>
+      </div>
+    </div>
+    <p class="rev-body">"Every great Sunday starts with good food<br>and even better company."</p>
+    <button class="btn-next" onclick="goTo('ch2')">Continue to Chapter Two →</button>
+  </div>
+</div>
+
+
+<!-- CHAPTER 2 — BLOOM -->
+<div class="page hidden" id="ch2">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Two</div>
+  <div class="ch-title">Something Beautiful Is Growing</div>
+  <div class="vl" style="margin-bottom:36px;"></div>
+  <div id="ch2-q">
+    <p class="clue-text">
+      We met in the summer —<br>
+      a crazy time,<br>
+      late nights, weed and shrooms,<br>
+      our laughter could fill<br>
+      up multiple rooms.<br><br>
+      Who knew the spring<br>
+      would allow roots to grow<br>
+      and a relationship<br>
+      to ______
+    </p>
+    <div class="hl" style="margin-bottom:32px;"></div>
+    <input class="clue-input" id="i2" type="text" placeholder="Complete us…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(2)">
+    <div class="err" id="e2">Feel the poem. What does spring allow?</div>
+    <button class="btn" onclick="check(2)">Unlock</button>
+  </div>
+  <div class="reveal" id="ch2-r">
+    <div class="rev-tag">Chapter Two · Unlocked</div>
+    <div class="bloom-wrap">
+      <div class="bpetal" style="--r:0deg;  margin-top:-28px;margin-left:-9px;"></div>
+      <div class="bpetal" style="--r:72deg; margin-top:-10px;margin-left:14px;"></div>
+      <div class="bpetal" style="--r:144deg;margin-top:14px; margin-left:5px;"></div>
+      <div class="bpetal" style="--r:216deg;margin-top:14px; margin-left:-23px;"></div>
+      <div class="bpetal" style="--r:288deg;margin-top:-10px;margin-left:-32px;"></div>
+      <div class="bloom-core">🌸</div>
+    </div>
+    <h2 class="rev-head">We <em>Bloom.</em></h2>
+    <div class="hl" style="margin:22px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">📍</div>
+        <div><div class="dlbl">Next stop</div>
+        <!-- EDIT: Bloom event/venue detail -->
+        <div class="dval">Bloom · Baltimore, MD</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">🌸</div>
+        <div><div class="dlbl">What it means</div>
+        <div class="dval">Like us — something rare that only grows more beautiful with time.</div></div>
+      </div>
+    </div>
+    <p class="rev-body">"You are in full bloom, Toni.<br>And I see every single petal."</p>
+    <button class="btn-next" onclick="goTo('ch3')">Continue to Chapter Three →</button>
+  </div>
+</div>
+
+
+<!-- CHAPTER 3 — FASHION -->
+<div class="page hidden" id="ch3">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Three</div>
+  <div class="ch-title">What We Create Together</div>
+  <div class="vl" style="margin-bottom:36px;"></div>
+  <div id="ch3-q">
+    <p class="clue-text">
+      The place where we slow down,<br>
+      breathe, and enjoy what<br>
+      we've created together.<br><br>
+      We bring the passion,<br>
+      I bring the design —<br>
+      and you bring the <em style="font-style:italic;color:var(--goldl);">___________</em>
+    </p>
+    <div class="hl" style="margin-bottom:32px;"></div>
+    <input class="clue-input" id="i3" type="text" placeholder="You bring the…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(3)">
+    <div class="err" id="e3">You already know this one, love.</div>
+    <button class="btn" onclick="check(3)">Unlock</button>
+  </div>
+  <div class="reveal" id="ch3-r">
+    <div class="rev-tag">Chapter Three · Unlocked</div>
+    <div style="font-size:42px;margin:28px 0;">👗</div>
+    <h2 class="rev-head">She brings<br>the <em>Fashion.</em></h2>
+    <div class="hl" style="margin:22px auto;"></div>
+    <div class="card">
+      <div class="drow">
+        <div class="dico">✦</div>
+        <div><div class="dlbl">The formula</div>
+        <div class="dval">Passion + Design + <span style="color:var(--goldl);">Fashion</span> = Us</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">💫</div>
+        <div><div class="dlbl">What you bring</div>
+        <!-- EDIT: Personal note about her style -->
+        <div class="dval">The elegance. The eye. The energy that makes everything look right.</div></div>
+      </div>
+    </div>
+    <p class="rev-body">"Everything I build looks better<br>because you're standing next to it."</p>
+    <button class="btn-next" onclick="goTo('ch4')">Continue to Chapter Four →</button>
+  </div>
+</div>
+
+
+<!-- CHAPTER 4 — MILAN -->
+<div class="page hidden" id="ch4">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">Chapter Four</div>
+  <div class="ch-title">Where Fashion Controls the World</div>
+  <div class="vl" style="margin-bottom:36px;"></div>
+  <div id="ch4-q">
+    <p class="clue-text">
+      One of the four capitals<br>
+      where fashion controls<br>
+      the day <em style="font-style:italic;color:var(--goldl);">and</em> the night.
+    </p>
+    <div class="hl" style="margin-bottom:32px;"></div>
+    <input class="clue-input" id="i4" type="text" placeholder="Name the city…"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')check(4)">
+    <div class="err" id="e4">Think runways. Think Italy.</div>
+    <button class="btn" onclick="check(4)">Unlock</button>
+  </div>
+  <div class="reveal" id="ch4-r">
+    <div class="rev-tag">Chapter Four · Unlocked</div>
+    <div class="passport">
+      <div class="pstamp"><span class="pflag">🇮🇹</span><span class="plbl">Italia</span></div>
+      <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;">Riddim &amp; Romance · Travel</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,12vw,66px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.1;margin-bottom:6px;">Milan</h2>
+      <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:30px;">Fashion Capital · Italy</div>
+      <div class="drow">
+        <div class="dico">✈️</div>
+        <div><div class="dlbl">Destination</div><div class="dval">Milan, Italy</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">🗓</div>
+        <div><div class="dlbl">Our trip</div>
+        <!-- EDIT: Update when trip dates confirmed -->
+        <div class="dval">Details dropping tonight at exactly the right moment.</div></div>
+      </div>
+      <div class="drow">
+        <div class="dico">👗</div>
+        <div><div class="dlbl">Why Milan</div>
+        <!-- EDIT: Personal note -->
+        <div class="dval">Because you deserve to walk the streets that defined fashion — and own every one of them.</div></div>
+      </div>
+    </div>
+    <p class="rev-body" style="margin-top:26px;">"Pack light. Bring love.<br>Leave room for everything Milan will give us."</p>
+    <button class="btn-next" onclick="goTo('final')">The Final Reveal →</button>
+  </div>
+</div>
+
+
+<!-- FINAL — COUNTDOWN TO 8:03 PM -->
+<div class="page hidden" id="final">
+  <div class="brand">Toni &amp; Jibari — The Beginning</div>
+  <div class="ch-tag">The Finale</div>
+  <div class="ch-title">Your Next Chapter Awaits</div>
+  <div class="vl" style="margin-bottom:36px;"></div>
+
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8.5vw,52px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.2;margin-bottom:8px;">
+    Tonight,<br><span style="color:var(--goldl);">I tell you everything.</span>
+  </h2>
+  <div class="hl" style="margin:28px auto;"></div>
+
+  <div class="countdown-box">
+    <div class="cd-label" id="cd-label">Your reveal arrives in</div>
+    <div class="cd-grid" id="cd-grid">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-h">--</span>
+        <div class="cd-unit-lbl">Hours</div>
+      </div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-m">--</span>
+        <div class="cd-unit-lbl">Minutes</div>
+      </div>
+    </div>
+    <div class="cd-done" id="cd-done">
+      ✦&nbsp; The moment is now. &nbsp;✦<br>
+      <span style="font-size:clamp(15px,3.5vw,18px);color:var(--gray);font-family:'Cormorant Garamond',serif;font-style:italic;">Check your messages, love.</span>
+    </div>
+    <!-- EDIT: Teaser message while counting down -->
+    <p class="cd-hint" id="cd-hint">
+      "Something beautiful is waiting for you<br>
+      at exactly the right moment tonight."
+    </p>
+  </div>
+
+  <div class="gallery">
+    <div class="glbl">Our Story · Add Your Photos Here</div>
+    <div class="ggrid">
+      <!-- EDIT: Replace with <img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+      <div class="gitem"><span class="gph">Our first<br>moment together</span></div>
+      <div class="gitem"><span class="gph">A memory<br>I keep close</span></div>
+      <div class="gitem"><span class="gph">The day<br>that changed us</span></div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="vl" style="margin:0 auto 40px;"></div>
+    <h3 class="chead">Everything I build<br>is for this family.</h3>
+    <!-- EDIT: Your personal closing letter to Toni -->
+    <p class="cbody">
+      You became a mother and never stopped being you —<br>
+      graceful, strong, and fully yourself.<br><br>
+      I've had my head down building our future.<br>
+      Today I looked up — and I just needed you to know<br>
+      how seen, how loved, and how celebrated you are.<br><br>
+      This is only the beginning, Toni.<br>
+      And I wouldn't want to begin it<br>
+      with anyone but you.
+    </p>
+    <div class="hl"></div>
+    <div class="sig" style="margin-top:28px;">With all my love,</div>
+    <!-- EDIT: Your name -->
+    <div class="signame">Jibari</div>
+    <div style="margin-top:32px;" class="hl"></div>
+    <div class="raplogo">Riddim &amp; Romance · 2025</div>
+  </div>
+</div>
+
+
+<script>
+/* PARTICLES */
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<24;i++){
+    const p=document.createElement('div');p.className='pt';
+    p.style.cssText=`left:${Math.random()*100}%;--d:${7+Math.random()*6}s;--dl:${Math.random()*9}s;`;
+    c.appendChild(p);
+  }
+})();
+
+/* MUSIC */
+let musicOn=false;
+const audio=document.getElementById('bgAudio');
+audio.volume=0.18;
+function toggleMusic(){
+  const btn=document.getElementById('musicBtn');
+  if(musicOn){audio.pause();btn.textContent='♪ Music Off';musicOn=false;}
+  else{audio.play().catch(()=>{});btn.textContent='♫ Music On';musicOn=true;}
+}
+
+/* NAVIGATION */
+const PAGES=['home','ch1','ch2','ch3','ch4','final'];
+function goTo(id){
+  const ov=document.getElementById('overlay');
+  ov.classList.add('on');
+  setTimeout(()=>{
+    document.querySelectorAll('.page').forEach(p=>{p.classList.add('hidden');p.classList.remove('active');});
+    const t=document.getElementById(id);
+    if(t){t.classList.remove('hidden');window.scrollTo(0,0);}
+    setTimeout(()=>{t&&t.classList.add('active');ov.classList.remove('on');},80);
+    updateDots(id);
+    if(id==='final')startCountdown();
+  },560);
+}
+function updateDots(id){
+  const idx=PAGES.indexOf(id);
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
+  document.getElementById('dots').classList.toggle('on',id!=='home');
+}
+
+/* ANSWERS */
+const ANS={
+  1:['brunch'],
+  2:['bloom','blooming'],
+  3:['fashion'],
+  4:['milan','milano','italy','italia'],
+};
+function check(n){
+  const inp=document.getElementById(`i${n}`);
+  const err=document.getElementById(`e${n}`);
+  const val=inp.value.trim().toLowerCase();
+  const ok=ANS[n].some(a=>val===a||val.includes(a)||(a.includes(val)&&val.length>2));
+  if(ok){err.classList.remove('show');unlock(n);}
+  else{
+    err.classList.add('show');
+    inp.style.borderBottomColor='rgba(212,174,88,0.45)';
+    setTimeout(()=>{inp.style.borderBottomColor='';err.classList.remove('show');},2800);
+  }
+}
+function unlock(n){
+  const fl=document.getElementById('flash');
+  fl.classList.remove('on');void fl.offsetWidth;fl.classList.add('on');
+  setTimeout(()=>{
+    const q=document.getElementById(`ch${n}-q`);
+    const r=document.getElementById(`ch${n}-r`);
+    if(q)q.style.display='none';
+    if(r)r.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },900);
+}
+
+/* COUNTDOWN TO 8:03 PM */
+let cdInterval=null;
+function startCountdown(){
+  if(cdInterval)return; // don't start twice
+
+  function tick(){
+    const now=new Date();
+    // EDIT: 20 = 8 PM (24hr), 3 = :03 minutes — change these if reveal time changes
+    const target=new Date(now.getFullYear(),now.getMonth(),now.getDate(),20,3,0);
+    const diff=target-now;
+
+    const elH    = document.getElementById('cd-h');
+    const elM    = document.getElementById('cd-m');
+    const elDone = document.getElementById('cd-done');
+    const elHint = document.getElementById('cd-hint');
+    const elGrid = document.getElementById('cd-grid');
+    const elLbl  = document.getElementById('cd-label');
+
+    if(diff<=0){
+      // Reveal moment
+      elGrid.style.display='none';
+      elLbl.style.display='none';
+      elHint.style.display='none';
+      elDone.style.display='block';
+      clearInterval(cdInterval);
+      return;
+    }
+
+    const totalMins=Math.floor(diff/60000);
+    const hours=Math.floor(totalMins/60);
+    const mins=totalMins%60;
+
+    elH.textContent=String(hours).padStart(2,'0');
+    elM.textContent=String(mins).padStart(2,'0');
+  }
+
+  tick();
+  cdInterval=setInterval(tick,30000); // updates every 30 seconds
+}
+
+/* INIT */
+window.addEventListener('load',()=>{
+  document.getElementById('home').classList.add('active');
+  updateDots('home');
+});
+</script>
+</body>
+</html>
